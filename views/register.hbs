@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/stylesheets/style.css"> <!-- Link to external CSS file -->
+
+<h1 class="mb-4">
+  Register
+</h1>
+<form method="post">
+  <fieldset class="form-group">
+    <label for="username" class="col-2 control-label">
+      Username: *
+    </label>
+    <input name="username" id="username" type="email" placeholder="email@email.com" class="col-2 mb-2" required/>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="password" class="col-2 control-label">
+      Password: *
+    </label>
+    <input name="password" id="password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="col-2 mb-2" required/>
+  </fieldset>
+  <fieldset class="form-group mb-3">
+    <label for="confirm" class="col-2 control-label">
+      Confirm Password: *
+    </label>
+    <input name="confirm" id="confirm" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="col-2" required/>
+  </fieldset>
+  <fieldset class="form-group">
+    <button class="btn btn-custom offset-3">
+      Register
+    </button>
+    <hr />
+    Already have an account?
+    <a href="/login" title="Login">
+      Login
+    </a>
+  </fieldset>
+</form>

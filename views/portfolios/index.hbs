@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/stylesheets/style.css"> <!-- Link to external CSS file -->
+
+<h1>{{title}}</h1>
+
+{{!-- add links to ADD --}}
+{{#if user}}
+<a href = "/portfolios/add" class="btn btn-custom mb-3 mt-2">Add a new Portfolio</a>
+{{/if}}
+
+<div class="row">
+  {{!-- show elements from DB, use foreach loop --}}
+  {{#each dataset}}
+    <div class="col-md-4">
+      <div class="card mb-4 text-center">
+        <div class="card-body">
+          {{#if this.picture}}
+            {{base64Image this.picture "img-thumbnail"}}
+          {{/if}}
+          <h5 class="card-title mt-3 mb-3">{{this.name}}</h5>
+          <p class="card-text">{{toShortDate this.publishDate}}</p>
+          <p class="card-text tag"># {{this.category}}</p>
+          <p class="card-text quote">'{{this.description}}'</p>
+          {{!-- Go one layer up out of the for loop (i.e. #each dataset) --}}
+          {{#if ../user}}
+            <a href="/portfolios/edit/{{this._id}}" class="btn btn-outline-primary">Edit</a>
+            <a href="/portfolios/delete/{{this._id}}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this portfolio?')">Delete</a>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>

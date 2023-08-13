@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/stylesheets/style.css"> <!-- Link to external CSS file -->
+
+<h1 class="mb-3">{{title}}</h1>
+{{#isAdmin user.username}}
+<a href="/categories/add" class="btn btn-custom mb-2">Add a new Category</a>
+{{/isAdmin}}
+<table class="table table-striped table-hover">
+    <thead>
+        <th>Name</th>
+    </thead>
+    <tbody>
+        {{#each dataset}}
+        <tr>
+            <td>{{this.name}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

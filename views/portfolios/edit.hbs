@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/stylesheets/style.css"> <!-- Link to external CSS file -->
+
+<h1 class="mb-3">{{title}}</h1>
+{{!-- create a form to send data back to the server --}}
+<form method="post" enctype="multipart/form-data">
+    {{!-- add form fields --}}
+    <fieldset class="mb-3">
+        <label for="name" class="col-2">Portfolio name: </label>
+        <input name = "name" id = "name" value="{{portfolio.name}}" class="col-2" required>
+    </fieldset>
+    <fieldset class="mb-3">
+        <label for="category" class="col-2">Category: </label>
+        <select name="category" id="category" class="col-2">
+            {{#each categories}}
+                {{createOption this.name ../portfolio.category}}
+            {{/each}}
+        </select>
+    </fieldset>
+    <fieldset class="mb-3">
+        <label for="description" class="col-2 align-items-center d-flex mb-1">Description: </label>
+        <textarea name = "description" id = "description" rows="5" class="col-4" required>{{portfolio.description}}</textarea>
+    </fieldset>
+    </fieldset>
+        <fieldset class="mb-3">
+        <label for="picture" class="col-2">Upload New Picture: </label>
+        <input type="file" name="picture" id="picture" class="col-4">
+    </fieldset>
+    {{!-- add a button to trigger POST request back to server --}}
+    <button class = "offset-3 col-1 btn btn-custom">Save edit</button>
+</form>

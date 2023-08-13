@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/stylesheets/style.css"> <!-- Link to external CSS file -->
+
+<h1>
+  Login
+</h1>
+ 
+{{#if messages}}
+    <div class="alert alert-danger">
+        Invalid credentials
+    </div>
+{{else}}
+    <div class="alert alert-info mb-4">
+        Please enter your credentials
+    </div>
+{{/if}}
+<form method="post">
+  <fieldset class="form-group mb-2">
+    <label for="username" class="col-2 control-label">
+      Username: *
+    </label>
+    <input name="username" id="username" class="col-2" required />
+  </fieldset>
+  <fieldset class="form-group mb-3">
+    <label for="password" class="col-2 control-label">
+      Password: *
+    </label>
+    <input name="password" id="password" type="password" class="col-2" required />
+  </fieldset>
+  <fieldset class="form-group">
+    <button class="btn btn-custom offset-2">
+      Login
+    </button>
+    <a class="btn btn-custom" href="/github">Login with Github</a>
+    <hr />
+    Need an account?
+    <a href="/register" title="Register">
+      Register
+    </a>
+  </fieldset>
+</form>
