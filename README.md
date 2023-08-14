@@ -7,3 +7,4 @@ Previously I was trying to build a MEAN webapp for the assignment but it turned 
 
 There are more than 4 commits in total for both MEAN and express-hbs app. I first built MEAN app from 10-Aug (Thu) and replace it entirely with express-hbs app on 13-Aug (Sun): https://github.com/ka-wai-choi/Portfolk
 
+In this application, user will be able to share their portfolio(s) with other users. Only registered user will be able to post a new portfolio. Only the author will be able to edit/ delete their own portfolio (they won't see the buttons if they are not the author). For categories, all users can only view but not add/ edit. Only admin (REDACTED) will be able to do so. 

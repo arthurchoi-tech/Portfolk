@@ -19,6 +19,23 @@ function IsLoggedIn(req, res, next){
     res.redirect("/login");
 }
 
+// Reusable function to check whether the user is the author to edit/ delete his portfolio
+function IsAuthor(req, res, next){
+    const portfolioId = req.params._id;
+
+    Portfolio.findById(portfolioId)
+        .then((portfolio) => {
+            if (req.isAuthenticated() && req.user.username === portfolio.author) {
+                return next(); // continue processing request
+            }
+            res.redirect("/login");
+        })
+        .catch((err) => {
+            console.log(err);
+            res.redirect("/login");
+        });
+}
+
 // configure the router object
 // GET handler for /portfolios/
 router.get('/', (req, res, next) => {
@@ -78,7 +95,7 @@ router.post('/add', IsLoggedIn, upload.single('picture'), (req, res, next) => {
 });
 
 // GET handler for /portfolios/edit/_id
-router.get('/edit/:_id', IsLoggedIn, (req, res, next) => {
+router.get('/edit/:_id', IsLoggedIn, IsAuthor, (req, res, next) => {
     const _id = req.params._id
 
     Portfolio.findById({_id})
@@ -103,7 +120,7 @@ router.get('/edit/:_id', IsLoggedIn, (req, res, next) => {
 })
 
 // GET handler for /portfolios/delete/_:id
-router.get('/delete/:_id', IsLoggedIn, (req, res, next) => {
+router.get('/delete/:_id', IsLoggedIn, IsAuthor, (req, res, next) => {
 
     const _id= req.params._id
 
@@ -117,7 +134,7 @@ router.get('/delete/:_id', IsLoggedIn, (req, res, next) => {
 })
 
 // POST handler for /portfolios/edit/:_id
-router.post('/edit/:_id', IsLoggedIn, upload.single('picture'), (req, res, next) => {
+router.post('/edit/:_id', IsLoggedIn, IsAuthor, upload.single('picture'), (req, res, next) => {
 
     const _id = req.params._id;
 

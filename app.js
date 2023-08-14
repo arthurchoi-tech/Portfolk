@@ -109,6 +109,11 @@ hbs.registerHelper('isAdmin', function(username, options) {
   return (username === REDACTED) ? options.fn(this) : options.inverse(this);
 });
 
+// Add HBS helper methods for checking if user is the author of the portfolio
+hbs.registerHelper('isAuthor', function(username, author, options) {
+  return (username === author) ? options.fn(this) : options.inverse(this);
+});
+
 // Add HBS helper methods for base64 conversion 
 hbs.registerHelper('base64Image', function(picture) {
   if (picture && picture.data && picture.contentType) {
