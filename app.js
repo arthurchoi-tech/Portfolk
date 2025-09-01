@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // AUTHENTICATION MECHANISM
 // configure session
 app.use(session({
-  secret: 'REDACTED', // used for encryption/ protecting cookie
+  secret: process.env.SESSION_SECRET || 'dev-only-fallback', // used for encryption/ protecting cookie
   resave: false, // forces the session to be saved back to the store even when not modified
   saveUninitialized: false
 }));
