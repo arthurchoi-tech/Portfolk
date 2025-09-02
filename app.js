@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -34,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // AUTHENTICATION MECHANISM
 // configure session
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'dev-only-fallback', // used for encryption/ protecting cookie
+  secret: process.env.SESSION_SECRET, // used for encryption/ protecting cookie
   resave: false, // forces the session to be saved back to the store even when not modified
   saveUninitialized: false
 }));
@@ -104,9 +105,12 @@ hbs.registerHelper('createOption', (currentValue, selectedValue) => {
   return new hbs.SafeString('<option ' + selectedProperty + '>' + currentValue + '</option>'); // <option>VALUE</option>
 })
 
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+
 // Add HBS helper methods for checking if user is admin (REDACTED)
 hbs.registerHelper('isAdmin', function(username, options) {
-  return (username === REDACTED) ? options.fn(this) : options.inverse(this);
+  return (username === ADMIN_EMAIL) ? options.fn(this) : options.inverse(this);
 });
 
 // Add HBS helper methods for checking if user is the author of the portfolio
